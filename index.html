@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Object-Centric Latent Diffusion.">
+  <meta name="keywords" content="Object-Centric, Unsupervised, LSD">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LSD: Object-Centric Latent Diffusion</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSßKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <script type="module">
+
+    // update img src when choose other dataset, unsupervised segmentation
+    const seg_radioButtons = document.querySelectorAll('input[name="seg-data"]')
+    for (const radioButton of seg_radioButtons) {
+      radioButton.addEventListener('change', show)
+      function show() {
+        let assetUrl = new URL('./static/images/segmentation/' + radioButton.value + '.png', import.meta.url)
+        document.getElementById('seg').src = assetUrl
+      }
+    }
+    seg_radioButtons[1].click()
+
+    // update img src when choose other dataset, compositional_generation
+    const compose_radioButtons = document.querySelectorAll('input[name="compose-gen-data"]')
+    for (const radioButton of compose_radioButtons) {
+      radioButton.addEventListener('change', show)
+      function show() {
+        let assetUrl = new URL('./static/images/compositional_generation/' + radioButton.value + '.png', import.meta.url)
+        document.getElementById('compose-gen').src = assetUrl
+      }
+    }
+    compose_radioButtons[2].click()
+
+  </script>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">LSD: Object-Centric Latent Diffusion</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block" style="font-size: larger;">Anonymous</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv (Coming Soon)</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code (Coming Soon)</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img src="./static/images/first_page_figure_horizontal.png" alt="teaser" width="100%" />
+        <h2 class="subtitle has-text-centered" style="font-size: 20pt;">
+          <span class="dnerf">LSD</span> achieves unsupervised learning of object-centric representation and
+          compositional scene generation.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-max-desktop">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p style="font-size: 16pt;">
+              Despite remarkable recent advances, making object-centric learning work for complex natural scenes remains
+              the main challenge.
+              The recent success of adopting the transformer-based image generative model in object-centric learning
+              suggests that having a highly expressive image generator is crucial for dealing with complex scenes.
+              In this paper, inspired by this observation, we aim to answer the following question:
+              <b><i>can we benefit from the other pillar of modern deep generative models, i.e., the diffusion models,
+                  for object-centric learning</i></b> and
+              <b><i>what are the pros and cons of such a model</i></b>?
+              To this end, we propose a new object-centric learning model, Latent Slot Diffusion (LSD).
+              LSD can be seen from two perspectives. From the perspective of object-centric learning, it replaces the
+              conventional slot decoders with a latent diffusion model conditioned on the object slots.
+              Conversely, from the perspective of diffusion models, it is the first unsupervised compositional
+              conditional diffusion model which, unlike traditional diffusion models, does not require supervised
+              annotation such as a text description to learn to compose.
+              In experiments on various object-centric tasks, including the FFHQ dataset for the first time in this line
+              of research, we demonstrate that LSD significantly outperforms the state-of-the-art transformer-based
+              decoder, particularly when the scene is more complex.
+              We also show a superior quality in unsupervised compositional generation.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+      <hr>
+
+      <!-- Method. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-max-desktop">
+          <h2 class="title is-3">Method</h2>
+          <img src="./static/images/method.png" alt="method" width="100%" />
+          <h2 class="subtitle has-text-justified">
+            <b><i>Left:</i></b> In training, we encode the given image as a VQGAN latent and as slots.
+            We then add noise to the VQGAN latent and we train a denoising network to predict the noise given the noisy
+            latent and the slots.
+            <b><i>Right:</i></b> Given the trained model, we can generate novel images by composing a slot-based concept
+            prompt and decoding it using the trained latent slot diffusion decoder.
+
+          </h2>
+        </div>
+      </div>
+      <!--/ Method. -->
+
+      <hr>
+
+      <!-- Unsupervised Object-Centric Learning. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-max-desktop">
+          <h2 class="title is-3">Unsupervised Object-Centric Learning</h2>
+          <!-- <p style="margin: 0 1.5em; font-size: 0.8em; text-align:justify;">Note: Click the button to select a dataset for result visualization.</p>
+        <hr> -->
+          <!-- <div class="task"> -->
+          <p>&nbsp;</p>
+          <div class="columns is-centered" style="position: relative;">
+            <!-- <div class="control has-text-justified" style="position: absolute; left: -10%;"> -->
+            <div class="control has-text-centered">
+              <label class="radio" style="font-size: 20px;">
+                <input value="clevrtex" type="radio" name="seg-data"> CLEVRTex
+              </label>
+              <!-- <br> -->
+              <label class="radio" style="font-size: 20px;">
+                <input value="movi_e" type="radio" name="seg-data"> MOVi-E
+              </label>
+              <!-- <br> -->
+              <label class="radio" style="font-size: 20px;">
+                <input value="ffhq" type="radio" name="seg-data"> FFHQ
+              </label>
+              <!-- <br> -->
+            </div>
+          </div>
+          <div id="pose_loading" style="position: absolute; left: 50%; top: 45%;"></div>
+          <img src="./static/images/segmentation/clevrtex.png" id="seg" width="100%"></img>
+          <!-- </div> -->
+          <p>&nbsp;</p>
+          <h2 class="subtitle has-text-centered" style="font-size: 20pt;">
+            LSD achieves tighter object boundaries, less object splitting, and cleaner background segmentation compared to other state-of-the-art techniques. These advantages are especially noticeable in more complex datasets.
+          </h2>
+        </div>
+      </div>
+      <!-- Unsupervised Object-Centric Learning. -->
+
+      <hr>
+
+      <!-- Compositional Generation. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-max-desktop">
+          <h2 class="title is-3">Compositional Generation</h2>
+          <!-- <p style="margin: 0 1.5em; font-size: 0.8em; text-align:justify;">Note: Click the button to select a dataset for result visualization.</p>
+        <hr> -->
+          <!-- <div class="task"> -->
+          <p>&nbsp;</p>
+          <div class="columns is-centered" style="position: relative;">
+            <!-- <div class="control has-text-justified" style="position: absolute; left: -10%;"> -->
+            <div class="control has-text-centered">
+              <label class="radio" style="font-size: 20px;">
+                <input value="clevrtex" type="radio" name="compose-gen-data"> CLEVRTex
+              </label>
+              <!-- <br> -->
+              <label class="radio" style="font-size: 20px;">
+                <input value="movi_e" type="radio" name="compose-gen-data"> MOVi-E
+              </label>
+              <!-- <br> -->
+              <label class="radio" style="font-size: 20px;">
+                <input value="ffhq" type="radio" name="compose-gen-data"> FFHQ
+              </label>
+              <!-- <br> -->
+            </div>
+          </div>
+          <div id="pose_loading" style="position: absolute; left: 50%; top: 45%;"></div>
+          <img src="./static/images/compositional_generation/clevrtex.png" id="compose-gen" width="100%"></img>
+          <!-- </div> -->
+          <p>&nbsp;</p>
+          <h2 class="subtitle has-text-centered" style="font-size: 20pt;">
+            LSD provides significantly higher fidelity and more clear details compared to the other methods.
+          </h2>
+        </div>
+      </div>
+      <!-- Compositional Generation. -->
+
+      <hr>
+
+      <!-- Background Swap. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-max-desktop">
+          <h2 class="title is-3">Slot-Based Image Editing - Background Replacement</h2>
+          <!-- <p style="margin: 0 1.5em; font-size: 0.8em; text-align:justify;">Note: Click the button to select a dataset for result visualization.</p>
+            <hr> -->
+          <!-- <div class="task"> -->
+          <p>&nbsp;</p>
+          <div id="pose_loading" style="position: absolute; left: 50%; top: 45%;"></div>
+          <img src="./static/images/slot_based_editing/background_swap.png" id="bg-swap" width="100%"></img>
+          <!-- </div> -->
+          <p>&nbsp;</p>
+          <h2 class="subtitle has-text-centered" style="font-size: 20pt;">
+            In LSD, replacing the background of an image can be achieved by replacing the background slot.
+          </h2>
+        </div>
+      </div>
+      <!-- Background Swap. -->
+
+      <hr>
+
+      <!-- Object Insertion. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-max-desktop">
+          <h2 class="title is-3">Slot-Based Image Editing - Object Insertion</h2>
+          <!-- <p style="margin: 0 1.5em; font-size: 0.8em; text-align:justify;">Note: Click the button to select a dataset for result visualization.</p>
+            <hr> -->
+          <!-- <div class="task"> -->
+          <p>&nbsp;</p>
+          <div id="pose_loading" style="position: absolute; left: 50%; top: 45%;"></div>
+          <img src="./static/images/slot_based_editing/object_insertion.png" id="bg-insert" width="100%"></img>
+          <!-- </div> -->
+          <p>&nbsp;</p>
+          <h2 class="subtitle has-text-centered" style="font-size: 20pt;">
+            In LSD, we can insert new objects by adding the corresponding object slot to the existing set of slots.
+          </h2>
+        </div>
+      </div>
+      <!-- Object Insertion. -->
+      
+      <hr>
+
+      <!-- Face Replacement. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-max-desktop">
+          <h2 class="title is-3">Slot-Based Image Editing - Face Replacement</h2>
+          <!-- <p style="margin: 0 1.5em; font-size: 0.8em; text-align:justify;">Note: Click the button to select a dataset for result visualization.</p>
+            <hr> -->
+          <!-- <div class="task"> -->
+          <p>&nbsp;</p>
+          <div id="pose_loading" style="position: absolute; left: 50%; top: 45%;"></div>
+          <img src="./static/images/slot_based_editing/face_replace.png" id="bg-insert" width="100%"></img>
+          <!-- </div> -->
+          <p>&nbsp;</p>
+          <h2 class="subtitle has-text-centered" style="font-size: 20pt;">
+            In LSD, we can also achieve face replacement by replacing the face-associated slot.
+          </h2>
+        </div>
+      </div>
+      <!-- Face Replacement. -->
+
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <p>
+          This website is based on a template by <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, 
+          licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
