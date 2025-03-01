@@ -1,0 +1,26 @@
+---
+interface Props {
+  caption?: string;
+}
+
+const { caption } = Astro.props;
+---
+
+<div class="flex flex-col gap-2">
+  <div class="grid grid-cols-2 gap-8 w-4/6 mx-auto">
+    <div>
+      <slot name="top-left" />
+    </div>
+    <div>
+      <slot name="top-right" />
+    </div>
+  </div>
+  <div>
+    <slot name="bottom" />
+  </div>
+  {caption && (
+    <figcaption class="text-center text-zinc-700">
+      {caption}
+    </figcaption>
+  )}
+</div>

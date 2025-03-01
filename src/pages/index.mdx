@@ -1,0 +1,463 @@
+---
+layout: ../layouts/Layout.astro
+title: CompactVILA - Mamba Enables Efficient Long Video Understanding for Multimodal LLMs
+description: Simple project page template for your research paper, built with Astro and Tailwind CSS
+favicon: favicon.svg
+thumbnail: screenshot.png
+---
+
+import Layout from "../layouts/Layout.astro";
+
+import Header from "../components/Header.astro";
+import Video from "../components/Video.astro";
+import HighlightedSection from "../components/HighlightedSection.astro";
+import SmallCaps from "../components/SmallCaps.astro";
+import Figure from "../components/Figure.astro";
+import Image from "../components/Image.astro";
+import TwoColumns from "../components/TwoColumns.astro";
+import YouTubeVideo from "../components/YouTubeVideo.astro";
+import LaTeX from "../components/LaTeX.astro";
+import Carousel from "../components/Carousel.astro";
+import CarouselSlide from "../components/CarouselSlide.astro";
+import TwoRows_small_big from "../components/TwoRows_small_big.astro";
+import TwoRows_top_2_bottom_1 from "../components/TwoRows_top_2_bottom_1.astro";
+import outside from "../assets/outside.mp4";
+import transformer from "../assets/transformer.webp";
+import Splat from "../components/Splat.tsx"
+import Title from "../components/Title.astro";
+import CenteredHeading from "../components/CenteredHeading.astro";
+
+import CodeBlock from "../components/CodeBlock.astro";
+import Table from "../components/Table.astro";
+export const components = {pre: CodeBlock, table: Table}
+
+import Figure_landscape from "../components/Figure_landscape.astro";
+import TwoColumns_20_80 from "../components/TwoColumns_20_80.astro";
+import image_method from "../assets/pngs/method.png";
+import video_moonfall from "../assets/videos/moonfall.mp4";
+import image_single_model_sample from "../assets/pngs/single_model_sample.png";
+import image_architecture from "../assets/pngs/architecture.png";
+import video_spacex from "../assets/videos/How_SpaceX_Could_Win_The_Space_Race_KTjeh5QPL0o.mp4";
+import image_compression_1 from "../assets/pngs/32_vs_128to32_1.png";
+import image_compression_2 from "../assets/pngs/32_vs_128to32_2.png";
+import image_compression_3 from "../assets/pngs/32_vs_128to32_3.png";
+import image_task_attribute_perception from "../assets/pngs/attribute_perception_single_model.png";
+import image_task_spatial_perception from "../assets/pngs/spatial_perception_single_model.png";
+import image_task_temporal_reasoning from "../assets/pngs/temporal_reasoning_single_model.png";
+import image_task_information_synopsis from "../assets/pngs/information_synopsis_single_model.png";
+import image_task_ocr from "../assets/pngs/ocr_single_model.png";
+import image_openended_1 from "../assets/pngs/openended_1.png";
+import image_openended_2 from "../assets/pngs/openended_2.png";
+import image_openended_3 from "../assets/pngs/openended_3.png";
+import image_openended_4 from "../assets/pngs/openended_4.png";
+import image_videomme_openended_1 from "../assets/pngs/videomme_openended_1.png"
+import image_videomme_openended_2 from "../assets/pngs/videomme_openended_2.png"
+import image_videomme_openended_3 from "../assets/pngs/videomme_openended_3.png"
+import image_videomme_openended_4 from "../assets/pngs/videomme_openended_4.png"
+import image_videomme_openended_5 from "../assets/pngs/videomme_openended_5.png"
+import image_videomme_openended_6 from "../assets/pngs/videomme_openended_6.png"
+import image_videomme_openended_7 from "../assets/pngs/videomme_openended_7.png"
+import image_videomme_openended_8 from "../assets/pngs/videomme_openended_8.png"
+import image_full_results_external from "../assets/pngs/full_results_external.png"
+import image_full_results_internal from "../assets/pngs/full_results_internal.png"
+import image_compactvila_vs_vila_128f from "../assets/pngs/compactvila_vs_vila_128f.png"
+import image_efficiency from "../assets/pngs/efficiency.png"
+import image_token_compression from "../assets/pngs/token_compression.png"
+
+
+<Header
+  title={frontmatter.title}
+  authors={[
+    {
+      name: "Jindong Jiang",
+      url: "https://jindongjiang.me",
+      notes: ["1", "2", "†"],
+    },
+    {
+      name: "Xiuyu Li",
+      url: "https://xiuyuli.com",
+      notes: ["1", "3", "†"],
+    },
+    {
+      name: "Zhijian Liu",
+      url: "https://zhijianliu.com",
+      notes: ["1"],
+    },
+    {
+      name: "Muyang Li",
+      url: "https://lmxyy.me",
+      notes: ["1", "4"],
+    },
+    {
+      name: "Guo Chen",
+      url: "https://chenguo.netlify.app/",
+      notes: ["1", "5"],
+    },
+    {
+      name: "Zhiqi Li",
+      url: "https://zhiqi-li.github.io/",
+      notes: ["1", "5"],
+    },
+    {
+      name: "De-An Huang",
+      url: "https://ai.stanford.edu/~dahuang/",
+      notes: ["1"],
+    },
+    {
+      name: "Guilin Liu",
+      url: "https://liuguilin1225.github.io/",
+      notes: ["1"],
+    },
+    {
+      name: "Zhiding Yu",
+      url: "https://chrisding.github.io/",
+      notes: ["1"],
+    },
+    {
+      name: "Kurt Keutzer",
+      url: "https://people.eecs.berkeley.edu/~keutzer/",
+      notes: ["3"],
+    },
+    {
+      name: "Sungjin Ahn",
+      url: "https://mlml.kaist.ac.kr/sungjinahn",
+      notes: ["6"],
+    },
+    {
+      name: "Jan Kautz",
+      url: "https://jankautz.com/",
+      notes: ["1"],
+    },
+    {
+      name: "Hongxu Yin",
+      url: "https://hongxu-yin.github.io/",
+      notes: ["1"],
+    },
+    {
+      name: "Yao Lu",
+      url: "https://research.nvidia.com/person/yao-lu-jason",
+      notes: ["1"],
+    },
+    {
+      name: "Song Han",
+      url: "https://hanlab.mit.edu/songhan",
+      notes: ["1", "4"],
+    },
+    {
+      name: "Wonmin Byeon",
+      url: "https://wonmin-byeon.github.io/",
+      notes: ["1"],
+    },
+  ]}
+  conference=""
+  notes={[
+    {
+      symbol: "1",
+      text: "NVIDIA",
+    },
+    {
+      symbol: "2",
+      text: "Rutgers University",
+    },
+    {
+      symbol: "3",
+      text: "UC Berkeley",
+    },
+    {
+      symbol: "4",
+      text: "MIT",
+    },
+    {
+      symbol: "5",
+      text: "Nanjing University",
+    },
+    {
+      symbol: "6",
+      text: "KAIST",
+    },
+    {
+      symbol: "†",
+      text: "Equal contribution",
+      newLine: true
+    },
+  ]}
+  links={[
+    {
+      name: "Paper",
+      url: "",
+      icon: "ri:file-pdf-2-line",
+    },
+    {
+      name: "Code",
+      url: "https://github.com/RomanHauksson/academic-project-astro-template",
+      icon: "ri:github-line",
+    },
+    {
+      name: "arXiv",
+      url: "",
+      icon: "academicons:arxiv",
+    },
+    {
+      name: "Bluesky",
+      url: "",
+      icon: "ri:bluesky-line"
+    }
+  ]}
+  />
+
+<TwoRows_small_big>
+  <Video slot="top" source={video_moonfall} />
+  <Figure slot="bottom"
+      caption=""
+    >
+      <Image source={image_single_model_sample} altText="Diagram of the transformer deep learning architecture." />
+  </Figure>
+</TwoRows_small_big>
+
+<HighlightedSection>
+
+## Abstract
+
+**Problem:** Existing Video-LLMs often rely on frame-level representations without explicit temporal encoding, leading to inefficiencies in handling long video sequences and challenges in capturing temporal dynamics.
+
+**Solution:** We propose the **CompactVILA** framework, which integrates a **Mamba-Based Temporal Projector** between the image encoder and the LLM to enrich the visual tokens with temporal dynamics. This enriched encoding brings two benefits: (1) It **improves the model's video reasoning capabilities** by capturing temporal dynamics, and (2) By preserving critical dynamics across tokens, it inherently **allows for efficient downstream token reduction**, such as test-time sampling and training-based temporal and spatial pooling. Extensive experiments demonstrate that our approach enhances long-context reasoning and achieves state-of-the-art performance, reducing computational costs by up to <LaTeX inline formula="8\times" /> for visual tokens.
+
+</HighlightedSection>
+
+## Method
+
+<Figure_landscape
+    caption="CompactVILA introduces a Mamba-based temporal projector to enrich the visual tokens with temporal dynamics. This not only improves the model's video reasoning capabilities but also preserves critical dynamics across tokens, making the tokens inherently suitable for downstream token reduction, such as test-time sampling and training-based temporal and spatial pooling."
+  >
+    <Image source={image_method} altText="Diagram of the CompactVILA architecture." />
+</Figure_landscape>
+
+
+
+## Architecture
+
+<Title text="Token Compression Strategies" size="medium" />
+
+<Figure_landscape
+    caption="Temporal average pooling (left), spatial average pooling (middle), and training-free temporal token sampling (right). These methods can be applied individually or in combination."
+  >
+    <Image source={image_token_compression} altText="Diagram of token compression methods." />
+</Figure_landscape>
+
+<Title text="Model Architecture" size="medium" />
+
+<Figure_landscape
+    caption="Three key components of CompactVILA: (1) a Mamba-Based Temporal Projector to integrate spatio-temporal information into visual tokens, (2) temporal token compression using both training-free sampling and/or training-based pooling, and (3) spatial token compression to further optimize token efficiency. All compression methods—training-free and training-based, spatial and temporal—are independently applicable."
+  >
+    <Image source={image_architecture} altText="Diagram of components of the CompactVILA architecture." />
+</Figure_landscape>
+
+## Critical Role of the Mamba Module
+<div class="mt-4">
+  <Figure_landscape widthRatio="60%" caption="CompactVILA (with Mamba module) VS Baseline VILA for longer video inputs. Our Mamba module is critical for enabling robust improvements and efficiency as video length increases, while simply extending video length and applying token compression in baseline VILA yields diminised gains.">
+    <Image source={image_compactvila_vs_vila_128f} altText="CompactVILA vs VILA on VideoMME for various video lengths." />
+  </Figure_landscape>
+</div>
+
+## Mamba Enables Efficient Long Video Understanding
+
+<div class="mt-4">
+  <Figure_landscape caption="By compressing tokens before processing them in the LLM, CompactVILA substantially lowers computational overhead, leading to faster inference (left and middle), while providing continuous performance gains on extended video inputs (right).">
+    <Image source={image_efficiency} altText="CompactVILA efficiency and effectiveness when applied token compression methods." />
+  </Figure_landscape>
+</div>
+
+## Comprehensive Evaluation on Video Understanding Tasks
+
+<Title text="Comparison with Existing Video-LLMs" size="medium" />
+
+<Figure caption="Our approach outperforms all existing models while using significantly fewer tokens.">
+  <Image source={image_full_results_external} altText="Comparison with Existing Video-LLMs." />
+</Figure>
+
+<Title text="Comparison between VILA-Based Models on the Same Token Budget" size="medium" />
+
+<Figure caption="We compare between CompactVILA variants and the baseline VILA model, all trained with identical data and pipelines and use the same 8K token budget, representing the number of visual tokens provided to the LLM during training.">
+  <Image source={image_full_results_internal} altText="Comparison between VILA-Based Models on the Same Token Budget." />
+</Figure>
+
+
+## Examples on Long Video Inputs with Token Compression
+
+<Carousel caption="Longer-video inputs + token compression in CompactVILA improves performance while maintaining low computational overhead.">
+  <CarouselSlide>
+    <TwoRows_small_big>
+      <YouTubeVideo slot="top" videoId="KTjeh5QPL0o" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_compression_1} altText="Examples of how longer-video inputs plus token compression in CompactVILA improves performance." />
+      </Figure>
+    </TwoRows_small_big>
+  </CarouselSlide>
+  <CarouselSlide>
+    <TwoRows_small_big>
+      <YouTubeVideo slot="top" videoId="KIg4rprmO9Y" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_compression_2} altText="Examples of how longer-video inputs plus token compression in CompactVILA improves performance." />
+      </Figure>
+    </TwoRows_small_big>
+  </CarouselSlide>
+  <CarouselSlide>
+    <TwoRows_small_big>
+      <YouTubeVideo slot="top" videoId="5y5_VyEwZhc" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_compression_3} altText="Examples of how longer-video inputs plus token compression in CompactVILA improves performance." />
+      </Figure>
+    </TwoRows_small_big>
+  </CarouselSlide>
+</Carousel>
+
+## Examples on Various Categories of Visual Reasoning Tasks
+
+<Carousel>
+  <CarouselSlide caption="Information Synopsis" captionSize="text-2xl" captionPosition="top">
+    <TwoRows_top_2_bottom_1>
+      <YouTubeVideo slot="top-left" videoId="tGdL-34L-GE" caption="Top Example" />
+      <YouTubeVideo slot="top-right" videoId="uz6rjbw0ZA0" caption="Bottom Example" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_task_information_synopsis} altText="Examples of the Information Synopsis task." />
+      </Figure>
+    </TwoRows_top_2_bottom_1>
+  </CarouselSlide>
+  <CarouselSlide caption="Spatial Perception" captionSize="text-2xl" captionPosition="top">
+    <TwoRows_top_2_bottom_1>
+      <YouTubeVideo slot="top-left" videoId="yXl0Vrk5ssk" caption="Top Example" />
+      <YouTubeVideo slot="top-right" videoId="qK4G2KpmqFU" caption="Bottom Example" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_task_spatial_perception} altText="Examples of the Spatial Perception task." />
+      </Figure>
+    </TwoRows_top_2_bottom_1>
+  </CarouselSlide>
+  <CarouselSlide caption="OCR Problem" captionSize="text-2xl" captionPosition="top">
+    <TwoRows_top_2_bottom_1>
+      <YouTubeVideo slot="top-left" videoId="mVIXU0x9ocI" caption="Top Example" />
+      <YouTubeVideo slot="top-right" videoId="fkJv7LRa6Pc" caption="Bottom Example" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_task_ocr} altText="Examples of the OCR Problem." />
+      </Figure>
+    </TwoRows_top_2_bottom_1>
+  </CarouselSlide>
+  <CarouselSlide caption="Temporal Reasoning" captionSize="text-2xl" captionPosition="top">
+    <TwoRows_top_2_bottom_1>
+      <YouTubeVideo slot="top-left" videoId="54k2g9ddy4M" caption="Top Example" />
+      <YouTubeVideo slot="top-right" videoId="WViSvPFUVd8" caption="Bottom Example" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_task_temporal_reasoning} altText="Examples of the Temporal Reasoning task." />
+      </Figure>
+    </TwoRows_top_2_bottom_1>
+  </CarouselSlide>
+  <CarouselSlide caption="Attribute Perception" captionSize="text-2xl" captionPosition="top">
+    <TwoRows_top_2_bottom_1>
+      <YouTubeVideo slot="top-left" videoId="ejFVFtJdP3s" caption="Top Example" />
+      <YouTubeVideo slot="top-right" videoId="LlajSKnbcGk" caption="Bottom Example" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_task_attribute_perception} altText="Examples of the Attribute Perception task." />
+      </Figure>
+    </TwoRows_top_2_bottom_1>
+  </CarouselSlide>
+</Carousel>
+
+## More Samples and Comparison with State-of-the-Art
+
+<Carousel>
+  <CarouselSlide>
+    <TwoRows_small_big>
+      <YouTubeVideo slot="top" videoId="PV8Bdyn0ezs" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_openended_4} altText="Comparison with sota on the Open-Ended Problem." />
+      </Figure>
+    </TwoRows_small_big>
+  </CarouselSlide>
+  <CarouselSlide>
+    <TwoRows_small_big>
+      <YouTubeVideo slot="top" videoId="dNn4YFvQLMI" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_openended_1} altText="Comparison with sota on the Open-Ended Problem." />
+      </Figure>
+    </TwoRows_small_big>
+  </CarouselSlide>
+  <CarouselSlide>
+    <TwoRows_small_big>
+      <YouTubeVideo slot="top" videoId="tj2Yl9h-QJI" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_openended_2} altText="Comparison with sota on the Open-Ended Problem." />
+      </Figure>
+    </TwoRows_small_big>
+  </CarouselSlide>
+  <CarouselSlide>
+    <TwoRows_small_big>
+      <YouTubeVideo slot="top" videoId="HfpBsdyz5R4" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_openended_3} altText="Comparison with sota on the Open-Ended Problem." />
+      </Figure>
+    </TwoRows_small_big>
+  </CarouselSlide>
+  <CarouselSlide>
+    <TwoRows_small_big>
+      <YouTubeVideo slot="top" videoId="UIX6f0xMQ2U" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_videomme_openended_5} altText="Comparison with sota on the Open-Ended Problem." />
+      </Figure>
+    </TwoRows_small_big>
+  </CarouselSlide>
+  <CarouselSlide>
+    <TwoRows_small_big>
+      <YouTubeVideo slot="top" videoId="DfZIv2FKWj4" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_videomme_openended_1} altText="Comparison with sota on the Open-Ended Problem." />
+      </Figure>
+    </TwoRows_small_big>
+  </CarouselSlide>
+  <CarouselSlide>
+    <TwoRows_small_big>
+      <YouTubeVideo slot="top" videoId="rWp5ZpJAIAE" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_videomme_openended_2} altText="Comparison with sota on the Open-Ended Problem." />
+      </Figure>
+    </TwoRows_small_big>
+  </CarouselSlide>
+  <CarouselSlide>
+    <TwoRows_small_big>
+      <YouTubeVideo slot="top" videoId="HK13nVxBYxI" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_videomme_openended_3} altText="Comparison with sota on the Open-Ended Problem." />
+      </Figure>
+    </TwoRows_small_big>
+  </CarouselSlide>
+  <CarouselSlide>
+    <TwoRows_small_big>
+      <YouTubeVideo slot="top" videoId="20gUIdXGuAs" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_videomme_openended_4} altText="Comparison with sota on the Open-Ended Problem." />
+      </Figure>
+    </TwoRows_small_big>
+  </CarouselSlide>
+  <CarouselSlide>
+    <TwoRows_small_big>
+      <YouTubeVideo slot="top" videoId="-3t1rj8g6yg" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_videomme_openended_6} altText="Comparison with sota on the Open-Ended Problem." />
+      </Figure>
+    </TwoRows_small_big>
+  </CarouselSlide>
+  <CarouselSlide>
+    <TwoRows_small_big>
+      <YouTubeVideo slot="top" videoId="QdlP8ai8trw" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_videomme_openended_7} altText="Comparison with sota on the Open-Ended Problem." />
+      </Figure>
+    </TwoRows_small_big>
+  </CarouselSlide>
+  <CarouselSlide>
+    <TwoRows_small_big>
+      <YouTubeVideo slot="top" videoId="Bkheu99K5lY" />
+      <Figure slot="bottom" caption="">
+        <Image source={image_videomme_openended_8} altText="Comparison with sota on the Open-Ended Problem." />
+      </Figure>
+    </TwoRows_small_big>
+  </CarouselSlide>
+</Carousel>

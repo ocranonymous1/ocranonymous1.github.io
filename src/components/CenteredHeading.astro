@@ -1,0 +1,15 @@
+---
+interface Props {
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  className?: string;
+}
+
+const { level = 2, className = "" } = Astro.props;
+const Tag = `h${level}`;
+---
+
+<div class="w-full flex justify-center my-6">
+  <Tag class={`font-semibold text-center max-w-4xl ${className}`}>
+    <slot />
+  </Tag>
+</div> 

@@ -1,0 +1,23 @@
+---
+interface Props {
+  caption?: string;
+  captionSize?: string;
+  captionPosition?: "top" | "bottom";
+}
+
+const { caption, captionSize = "text-base", captionPosition = "bottom" } = Astro.props;
+---
+
+<div class="swiper-slide w-full max-w-4xl mx-auto flex flex-col gap-6">
+  {caption && captionPosition === "top" && (
+    <figcaption class={`text-center text-zinc-700 ${captionSize} mb-2`}>
+      {caption}
+    </figcaption>
+  )}
+  <slot />
+  {caption && captionPosition === "bottom" && (
+    <figcaption class={`text-center text-zinc-700 ${captionSize} mt-2`}>
+      {caption}
+    </figcaption>
+  )}
+</div> 

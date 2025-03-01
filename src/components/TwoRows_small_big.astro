@@ -1,0 +1,17 @@
+---
+interface Props {
+  topWidth?: string;
+  bottomWidth?: string;
+}
+
+const { topWidth = "w-2/6", bottomWidth = "w-full" } = Astro.props;
+---
+
+<div class="flex flex-col gap-8 items-center">
+  <div class={`${topWidth} mx-auto`}>
+    <slot name="top" />
+  </div>
+  <div class={`${bottomWidth}`}>
+    <slot name="bottom" />
+  </div>
+</div> 

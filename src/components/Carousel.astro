@@ -1,0 +1,87 @@
+---
+// Import Swiper styles in your frontmatter
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+interface Props {
+  caption?: string;
+}
+
+const { caption } = Astro.props;
+---
+
+<div class="w-full flex flex-col gap-2">
+  <!-- Slider main container -->
+  <div class="swiper w-full">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <slot />
+    </div>
+    
+    <!-- Navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    
+    <!-- Pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+  {caption && (
+    <figcaption class="text-center text-zinc-700">
+      {caption}
+    </figcaption>
+  )}
+</div>
+
+<script>
+  import Swiper from 'swiper';
+  import { Navigation, Pagination, A11y } from 'swiper/modules';
+  
+  // Initialize Swiper
+  new Swiper('.swiper', {
+    modules: [Navigation, Pagination, A11y],
+    // Optional parameters
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 0,
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true
+    },
+    
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    
+    // Pagination
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  });
+</script>
+
+<style>
+  .swiper {
+    padding: 2rem 3rem;
+    overflow: hidden;
+  }
+  
+  :global(.swiper-slide) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  :global(.swiper-slide-active) {
+    opacity: 1;
+  }
+  
+  :global(.swiper-wrapper) {
+    align-items: center;
+  }
+</style> 
