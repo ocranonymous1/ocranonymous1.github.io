@@ -207,7 +207,7 @@ import image_token_compression from "../assets/pngs/token_compression.png"
   <Figure slot="bottom"
       caption=""
     >
-      <Image source={image_single_model_sample} altText="Teaser example" />
+      <Image source={image_single_model_sample} altText="Teaser Example." />
   </Figure>
 </TwoRows_small_big>
 
@@ -251,7 +251,7 @@ import image_token_compression from "../assets/pngs/token_compression.png"
 
 ## Critical Role of the Mamba Module
 <div class="mt-4">
-  <Figure_landscape widthRatio="60%" caption="CompactVILA (with Mamba module) VS Baseline VILA for longer video inputs. Our Mamba module is critical for enabling robust improvements and efficiency as video length increases, while simply extending video length and applying token compression in baseline VILA yields diminised gains.">
+  <Figure_landscape widthRatio="60%" caption="CompactVILA (w/ Mamba) VS Baseline VILA for longer video inputs. Our Mamba module is critical for enabling robust improvements and efficiency as video length increases. On the other hand, without our Mamba module and simply extending video length and applying token compression in baseline VILA yields diminised gains.">
     <Image source={image_compactvila_vs_vila_128f} altText="CompactVILA vs VILA on VideoMME for various video lengths." />
   </Figure_landscape>
 </div>
