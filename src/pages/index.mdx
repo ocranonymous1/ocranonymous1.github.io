@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/Layout.astro
-title: CompactVILA - Mamba Enables Efficient Long Video Understanding for Multimodal LLMs
+title: Mamba Enables Efficient Long Video Understanding for Multimodal LLMs
 description: Simple project page template for your research paper, built with Astro and Tailwind CSS
 favicon: favicon.svg
 thumbnail: screenshot.png
@@ -211,6 +211,12 @@ import image_token_compression from "../assets/pngs/token_compression.png"
   </Figure>
 </TwoRows_small_big>
 
+<Title text="Comparison with Existing Video-LLMs" size="large" />
+
+<Figure caption="Our approach outperforms all existing models while using significantly fewer tokens.">
+  <Image source={image_full_results_external} altText="Comparison with Existing Video-LLMs." />
+</Figure>
+
 <HighlightedSection>
 
 ## Abstract
@@ -228,7 +234,6 @@ import image_token_compression from "../assets/pngs/token_compression.png"
   >
     <Image source={image_method} altText="Diagram of the CompactVILA architecture." />
 </Figure_landscape>
-
 
 
 ## Architecture
@@ -264,17 +269,9 @@ import image_token_compression from "../assets/pngs/token_compression.png"
   </Figure_landscape>
 </div>
 
-## Comprehensive Evaluation on Video Understanding Tasks
+## Comparison between VILA-Based Models on the Same Token Budget
 
-<Title text="Comparison with Existing Video-LLMs" size="medium" />
-
-<Figure caption="Our approach outperforms all existing models while using significantly fewer tokens.">
-  <Image source={image_full_results_external} altText="Comparison with Existing Video-LLMs." />
-</Figure>
-
-<Title text="Comparison between VILA-Based Models on the Same Token Budget" size="medium" />
-
-<Figure caption="We compare between CompactVILA variants and the baseline VILA model, all trained with identical data and pipelines and use the same 8K token budget, representing the number of visual tokens provided to the LLM during training.">
+<Figure caption="We compare between CompactVILA variants and the baseline VILA model, all trained with identical data and pipelines and use the same 8K token budget which represents the number of visual tokens provided to the LLM during training.">
   <Image source={image_full_results_internal} altText="Comparison between VILA-Based Models on the Same Token Budget." />
 </Figure>
 
