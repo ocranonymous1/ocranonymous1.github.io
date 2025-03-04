@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/Layout.astro
-title: Mamba Enables Efficient Long Video Understanding for Multimodal LLMs
+title: Token-Efficient Long Video Understanding for Multimodal LLMs
 description: Simple project page template for your research paper, built with Astro and Tailwind CSS
 favicon: favicon.svg
 thumbnail: screenshot.png
@@ -61,6 +61,7 @@ import image_compactvila_vs_vila_128f from "../assets/pngs/compactvila_vs_vila_1
 import image_efficiency from "../assets/pngs/efficiency.png"
 import image_token_compression from "../assets/pngs/token_compression.png"
 
+export const METHOD_NAME = "STORM";
 
 <Header
   title={frontmatter.title}
@@ -223,16 +224,16 @@ import image_token_compression from "../assets/pngs/token_compression.png"
 
 **Problem:** Existing Video-LLMs often rely on frame-level representations without explicit temporal encoding, leading to inefficiencies in handling long video sequences and challenges in capturing temporal dynamics.
 
-**Solution:** We propose the **CompactVILA** framework, which integrates a **Mamba-Based Temporal Projector** between the image encoder and the LLM to enrich the visual tokens with temporal dynamics. This enriched encoding brings two benefits: (1) It **improves the model's video reasoning capabilities** by capturing temporal dynamics, and (2) By preserving critical dynamics across tokens, it inherently **allows for efficient downstream token reduction**, such as test-time sampling and training-based temporal and spatial pooling. Extensive experiments demonstrate that our approach enhances long-context reasoning and achieves state-of-the-art performance, reducing computational costs by up to <LaTeX inline formula="8\times" /> for visual tokens.
+**Solution:** We **{`${METHOD_NAME}`}** (**S**patiotemporal **TO**ken **R**eduction for **M**ultimodal LLMs), which integrates a **Mamba-Based Temporal Projector** between the image encoder and the LLM to enrich the visual tokens with temporal dynamics. This enriched encoding brings two benefits: (1) It **improves the model's video reasoning capabilities** by capturing temporal dynamics, and (2) By preserving critical dynamics across tokens, it inherently **allows for efficient downstream token reduction**, such as test-time sampling and training-based temporal and spatial pooling. Extensive experiments demonstrate that our approach enhances long-context reasoning and achieves state-of-the-art performance, reducing computational costs by up to <LaTeX inline formula="8\times" /> for visual inputs.
 
 </HighlightedSection>
 
 ## Method
 
 <Figure_landscape
-    caption="CompactVILA introduces a Mamba-based temporal projector to enrich the visual tokens with temporal dynamics. This not only improves the model's video reasoning capabilities but also preserves critical dynamics across tokens, making the tokens inherently suitable for downstream token reduction, such as test-time sampling and training-based temporal and spatial pooling."
+    caption={`${METHOD_NAME} introduces a Mamba-based temporal projector to enrich the visual tokens with temporal dynamics. This not only improves the model's video reasoning capabilities but also preserves critical dynamics across tokens, making the tokens inherently suitable for downstream token reduction, such as test-time sampling and training-based temporal and spatial pooling.`}
   >
-    <Image source={image_method} altText="Diagram of the CompactVILA architecture." />
+    <Image source={image_method} altText={`Diagram of the ${METHOD_NAME} architecture.`} />
 </Figure_landscape>
 
 
@@ -249,41 +250,41 @@ import image_token_compression from "../assets/pngs/token_compression.png"
 <Title text="Model Architecture" size="medium" />
 
 <Figure_landscape
-    caption="Three key components of CompactVILA: (1) a Mamba-Based Temporal Projector to integrate spatio-temporal information into visual tokens, (2) temporal token compression using both training-free sampling and/or training-based pooling, and (3) spatial token compression to further optimize token efficiency. All compression methods—training-free and training-based, spatial and temporal—are independently applicable."
+    caption={`Three key components of ${METHOD_NAME}: (1) a Mamba-Based Temporal Projector to integrate spatio-temporal information into visual tokens, (2) temporal token compression using both training-free sampling and/or training-based pooling, and (3) spatial token compression to further optimize token efficiency. All compression methods—training-free and training-based, spatial and temporal—are independently applicable.`}
   >
-    <Image source={image_architecture} altText="Diagram of components of the CompactVILA architecture." />
+    <Image source={image_architecture} altText={`Diagram of components of the ${METHOD_NAME} architecture.`} />
 </Figure_landscape>
 
 ## Critical Role of the Mamba Module
 <div class="mt-4">
-  <Figure_landscape widthRatio="60%" caption="CompactVILA (w/ Mamba) VS Baseline VILA for longer video inputs. Our Mamba module is critical for enabling robust improvements and efficiency as video length increases. On the other hand, without our Mamba module and simply extending video length and applying token compression in baseline VILA yields diminised gains.">
-    <Image source={image_compactvila_vs_vila_128f} altText="CompactVILA vs VILA on VideoMME for various video lengths." />
+  <Figure_landscape widthRatio="60%" caption={`${METHOD_NAME} (w/ Mamba) VS Baseline VILA for longer video inputs. Our Mamba module is critical for enabling robust improvements and efficiency as video length increases. On the other hand, without our Mamba module and simply extending video length and applying token compression in baseline VILA yields diminised gains.`}>
+    <Image source={image_compactvila_vs_vila_128f} altText={`${METHOD_NAME} vs VILA on VideoMME for various video lengths.`} />
   </Figure_landscape>
 </div>
 
 ## Mamba Enables Efficient Long Video Understanding
 
 <div class="mt-4">
-  <Figure_landscape caption="By compressing tokens before processing them in the LLM, CompactVILA substantially lowers computational overhead, leading to faster inference (left and middle), while providing continuous performance gains on extended video inputs (right).">
-    <Image source={image_efficiency} altText="CompactVILA efficiency and effectiveness when applied token compression methods." />
+  <Figure_landscape widthRatio="100%" widthRatioCaption="100%" caption={`By compressing tokens before processing them in the LLM, ${METHOD_NAME} substantially lowers computational overhead, leading to faster inference (left and middle), while providing continuous performance gains on extended video inputs (right).`}>
+    <Image source={image_efficiency} altText={`${METHOD_NAME} efficiency and effectiveness when applied token compression methods.`} />
   </Figure_landscape>
 </div>
 
 ## Comparison between VILA-Based Models on the Same Token Budget
 
-<Figure caption="We compare between CompactVILA variants and the baseline VILA model, all trained with identical data and pipelines and use the same 8K token budget which represents the number of visual tokens provided to the LLM during training.">
+<Figure caption={`We compare between ${METHOD_NAME} variants and the baseline VILA model, all trained with identical data and pipelines and use the same 8K token budget which represents the number of visual tokens provided to the LLM during training.`}>
   <Image source={image_full_results_internal} altText="Comparison between VILA-Based Models on the Same Token Budget." />
 </Figure>
 
 
 ## Examples on Long Video Inputs with Token Compression
 
-<Carousel caption="Longer-video inputs + token compression in CompactVILA improves performance while maintaining low computational overhead.">
+<Carousel caption={`Longer-video inputs + token compression in ${METHOD_NAME} improves performance while maintaining low computational overhead.`}>
   <CarouselSlide>
     <TwoRows_small_big>
       <YouTubeVideo slot="top" videoId="KTjeh5QPL0o" />
       <Figure slot="bottom" caption="">
-        <Image source={image_compression_1} altText="Examples of how longer-video inputs plus token compression in CompactVILA improves performance." />
+        <Image source={image_compression_1} altText={`Examples of how longer-video inputs plus token compression in ${METHOD_NAME} improves performance.`} />
       </Figure>
     </TwoRows_small_big>
   </CarouselSlide>
@@ -291,7 +292,7 @@ import image_token_compression from "../assets/pngs/token_compression.png"
     <TwoRows_small_big>
       <YouTubeVideo slot="top" videoId="KIg4rprmO9Y" />
       <Figure slot="bottom" caption="">
-        <Image source={image_compression_2} altText="Examples of how longer-video inputs plus token compression in CompactVILA improves performance." />
+        <Image source={image_compression_2} altText={`Examples of how longer-video inputs plus token compression in ${METHOD_NAME} improves performance.`} />
       </Figure>
     </TwoRows_small_big>
   </CarouselSlide>
@@ -299,7 +300,7 @@ import image_token_compression from "../assets/pngs/token_compression.png"
     <TwoRows_small_big>
       <YouTubeVideo slot="top" videoId="5y5_VyEwZhc" />
       <Figure slot="bottom" caption="">
-        <Image source={image_compression_3} altText="Examples of how longer-video inputs plus token compression in CompactVILA improves performance." />
+        <Image source={image_compression_3} altText={`Examples of how longer-video inputs plus token compression in ${METHOD_NAME} improves performance.`} />
       </Figure>
     </TwoRows_small_big>
   </CarouselSlide>
