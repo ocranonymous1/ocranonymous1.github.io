@@ -14,6 +14,7 @@ type Link = {
 type Note = {
   symbol: string;
   text: string;
+  newLine?: boolean;
 }
 
 export { Author, Link, Note };

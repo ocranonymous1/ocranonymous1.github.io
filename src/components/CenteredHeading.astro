@@ -9,7 +9,7 @@ const Tag = `h${level}`;
 ---
 
 <div class="w-full flex justify-center my-6">
-  <Tag class={`font-semibold text-center max-w-4xl ${className}`}>
+  <Tag class:list={["font-semibold text-center max-w-4xl", className]}>
     <slot />
   </Tag>
 </div> 

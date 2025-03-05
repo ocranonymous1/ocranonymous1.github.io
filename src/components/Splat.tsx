@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import { Splat, OrbitControls } from "@react-three/drei";
+import { Splat } from "@react-three/drei";
 import { useState, useEffect } from "react";
 
 const Roman = () => {
